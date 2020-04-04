@@ -6,5 +6,8 @@ const routerController = require("../controllers/user");
 
 router.get("/", routerController.loginUser);
 router.post("/", routerController.getUserHome);
+router.get("/profile/:username", routerController.getUserProfile);
+router.post("/add", routerController.addNewUser);
+router.get("/users", routerController.getUsers);
 
 module.exports = router;

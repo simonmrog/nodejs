@@ -1,11 +1,26 @@
 <html>
 <head>
-  <title>{{ name }}</title>
+  <title>{{ username }}</title>
   <link rel="stylesheet" href="css/profile.css" />
 </head>
 <body>
-  <h1>Name: {{ name }}</h1>
+  <h1>{{ name }} Profile</h1>
   <hr />
-  <h3>Username: {{ username }}</h3>
+  <h3>Occupation: {{ occupation }}</h3>
+  <ol>
+    {{#languages}}
+      <li>{{.}}</li>
+    {{/languages}}
+  </ol>
+  <hr />
+  <h2>Add a New Profile</h2>
+  <form action="/add" method="post">
+    <input type="text" name="username" placeholder="Username" />
+    <input type="password" name="password" placeholder="password" />
+    <input type="text" name="name" placeholder="Name" />
+    <input type="text" name="occupation" placeholder="Occupation" />
+    <input type="text" name="languages" placeholder="Languages" />
+    <input type="submit" value="Register">
+  <form>
 </body>
 </html>
