@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: red;
+}
+
+.main-wrapper {
+  margin: 20px auto;
+  background-color: #ccc;
+  width: 80%;
+}
+
+.login-form {
+  margin: 0 auto;
+  width: 500px;
+  padding: 10px 50px;
+}
+
+.login-form > input {
+  width: 100%;
+  display: block;
+  margin: 10px 0;
+  padding: 6px 8px;
+}
