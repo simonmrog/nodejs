@@ -1,0 +1,32 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/home.css" />
+  <title>Portfolio</title>
+</head>
+<body>
+  <div class="site-wrapper">
+    {{>header}}
+    <div class="content">
+      <section class="hero">
+        <h1>{{greeting}}</h1>
+        <p> {{introduction}}</p>
+      </section>
+      <section class="skills">
+      </section>
+      <h1>My Projects</h1>
+      <section class="projects">
+        {{#projects}}
+            <section class="project">
+              <img src="{{{img}}}" width="300px" height="300px" />
+              <h3>{{name}}</h3>
+              <p>{{description}}</p>
+              <p>{{client}}</p>
+            </section>
+        {{/projects}}
+      </section>
+  </div>
+  {{>footer}}
+</body>
+</html>
