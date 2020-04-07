@@ -6,6 +6,7 @@ const ProjectSchema = mongoose.Schema({
   description: { type: String, default: "" },
   client: { type: String, default: "" },
   languages: { type: String, default: "" },
+  slug: { type: String, default: "", immutable: true },
 });
 
 module.exports = mongoose.model("Project", ProjectSchema);
