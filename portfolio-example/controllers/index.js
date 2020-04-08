@@ -1,4 +1,5 @@
 const ProjectController = require("./project");
+const SubscriberController = require("./subscribers");
 
 const renderHome = (req, res) => {
   ProjectController.getProjects()
@@ -35,6 +36,19 @@ const getProjects = (req, res) => {
     }));
 };
 
+const getSubscribers = (req, res) => {
+  console.log("[INFO]: getSubscribers");
+  let data = req.query;
+  if (req.query.id) data = { _id: req.query.id}
+  SubscriberController.getSubscribers(data)
+    .then(data => res.status(200).send({ status: "ok", data: data }))
+    .catch((err) => res.status(404).send({
+      status: "error",
+      message: err.message
+    }));
+};
+
+
 const createProject = (req, res) => {
   console.log("[INFO]: createProject");
   const data = req.body;
@@ -42,6 +56,21 @@ const createProject = (req, res) => {
     .then(createdData => res.status(200).send({
       status: "ok",
       message: "Project Created Successfully",
+      createdData: createdData
+    }))
+    .catch(err => res.status(404).send({
+      status: "error",
+      message: err.message
+    }));
+};
+
+const createSubscriber = (req, res) => {
+  console.log("[INFO]: createSubscriber");
+  const data = req.body;
+  SubscriberController.createSubscriber(data)
+    .then(createdData => res.status(200).send({
+      status: "ok",
+      message: "Subscriber Received Successfully",
       createdData: createdData
     }))
     .catch(err => res.status(404).send({
@@ -81,6 +110,11 @@ const deleteProject = (req, res) => {
     }));
 };
 
+const subscribe = (req, res) => {
+  //  FALSE SUBSCRIPTION
+  res.status(200).send({ status: "ok", message: "Subscription Received Successfully" });
+};
+
 module.exports = {
   renderHome,
   renderProject,
@@ -88,5 +122,7 @@ module.exports = {
   createProject,
   getProjects,
   updateProject,
-  deleteProject 
+  deleteProject,
+  getSubscribers,
+  createSubscriber
 };

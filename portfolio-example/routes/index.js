@@ -7,6 +7,8 @@ router.get("/api/projects", controller.getProjects);
 router.post("/api/projects", controller.createProject);
 router.put("/api/projects", controller.updateProject);
 router.delete("/api/projects", controller.deleteProject);
+router.get("/api/subscribers", controller.getSubscribers);
+router.post("/api/subscribers", controller.createSubscriber);
 
 router.get("/", controller.renderHome);
 router.get("/projects/:slug", controller.renderProject);
