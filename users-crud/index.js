@@ -18,4 +18,4 @@ mongoose.connect(MONGO, {
 		console.log("[INFO]: Connected to DB Successfully");
 		app.listen(PORT, console.log(`App running on http://localhost:${PORT}`));		
 	})
-	.catch(err => console.log("[Error] DB Connection Failed:", err.message));
+	.catch(err => console.log("[ERROR] DB Connection Failed:", err.message));

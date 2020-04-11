@@ -1,14 +1,15 @@
 const bcrypt = require("bcrypt-nodejs");
 const jwt = require("jsonwebtoken");
 
-const UserSchema = require("../../mongo/models/user");
+const UserModel = require("../../mongo/models/user");
+const ProductModel = require("../../mongo/models/product");
 
-const expiresIn = "5m";
+const expiresIn = "30m";
 
 const login = async (req, res) => {
 	try {
 		const { email, password } = req.body;
-		const user = await UserSchema.findOne({ email });
+		const user = await UserModel.findOne({ email });
 		if (user) {
 			const token = jwt.sign({
 				userId: user._id,
@@ -61,7 +62,7 @@ const createUser = async (req, res) => {
 	    }
 	    else {
 	    	// replacing password with hash
-	    	const User = new UserSchema({ username, email, password: hash });
+	    	const User = new UserModel({ username, email, password: hash });
 	    	User.save()
 	    		.then(user => {
 	    			res.status(200).send({
@@ -85,37 +86,55 @@ const createUser = async (req, res) => {
 	});
 };
 
-const deleteUser = (req, res) => {
-	res.status(200).send({
-		status: "ok",
-		message: "User Successfully Deleted"
-	});
+const deleteUser = async (req, res) => {
+	try {
+		const userId = req.body.userId;
+		if (!userId) throw { code: 404, message: "UserId Required" };
+		const user = await UserModel.findById(userId);
+		if (!user) throw { code: 404, message: "User Not Found" };
+		await user.remove();
+		result = await ProductModel.deleteMany({ user: userId });
+		res.status(200).send({
+			status: "ok",
+			message: "User Successfully Deleted",
+			result
+		});
+	} catch(err) {
+		res.status(err.code || 500).send({
+			status: err.status || "error",
+			message: err.message
+		});
+	};
 };
 
-const getUsers = (req, res) => {
-	res.status(200).send({ status: "ok", message: "Users" });
+const getUsers = async (req, res) => {
+	try {
+		// const users = await UserModel.find().select("_id username email");
+		const users = await UserModel.find().select({ password: 0, __v: 0 });
+		if (!users) throw { status: "error", message: "Users Not Found" };
+		res.status(200).send({ status: "ok", data: users });
+	} catch(err) {
+		res.status(err.code || 500).send({
+			status: err.status || "error",
+			message: err.message
+		});
+	}
 };
 
 const updateUser = async (req, res) => {
-		try {
-		const { username, email, userId} = req.body;
-		userUpdated = await UserSchema.findByIdAndUpdate(userId, {
+	try {
+		const userId = req.sessionData.userId;
+		const { username, email } = req.body;
+		const userUpdated = await UserModel.findByIdAndUpdate(userId, {
 			username,
 			email
-		}, 
-		{
-			forceNew: true
 		});
-		if (userUpdated) res.status(200).send({
+		if (!userUpdated) throw { code: 404, message: "User Not Found" };
+		res.status(200).send({
 			status: "ok",
 			message: "User Successfully Updated",
 			userUpdated
 		});
-		else throw {
-			code: 404,
-			status: "error",
-			message: "User Not Found"
-		};
 	} catch(err) {
 		res.status(err.code || 500).send({
 			status: err.status || "error",
