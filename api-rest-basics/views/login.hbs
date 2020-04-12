@@ -1,0 +1,32 @@
+<form method="POST">
+	<input type="email" name="email" placeholder="Email" />
+	<br />
+	<input type="password" name="password" placeholder="Password" />
+	<input type="submit" value="LogIn" />
+</form>
+
+<script>
+	const formLogin = document.querySelector("form");
+	const emailInput = document.querySelector("input[type=email]");
+	const passwordInput = document.querySelector("input[type=password]");
+
+	formLogin.addEventListener("submit", async event => {
+		try {
+			event.preventDefault();
+			const formData = {
+				email: emailInput.value,
+				password: passwordInput.value
+			};
+			const res = await fetch("/api/users/signIn", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(formData)
+			});
+			const data = await res.json();
+			alert("Logged In Successfully");
+			localStorage.setItem("token", data.token);
+		} catch(err) {
+			console.log(err);
+		}
+	});
+</script>

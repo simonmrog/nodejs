@@ -24,6 +24,15 @@ const genHash = (password, salt) => {
 	});
 };
 
+const compareHash = (password1, password2) => {
+  return new Promise((resolve, reject) => {
+		bcrypt.compare(password1, password2, (err, res) => {
+			if (err) reject(err);
+			else resolve(res);
+		});
+	});
+};
+
 const createToken = user => {
   const payload = {
     // BAD PRACTICE. NOT TO USE THE SAME ID OF MONGODB
@@ -58,6 +67,7 @@ const decodeToken = token => {
 module.exports = {
 	genSalt,
 	genHash,
+	compareHash,
 	createToken,
 	decodeToken
 };
