@@ -35,7 +35,6 @@ const signIn = async (req, res) => {
 		if (!user) throw ({ code: 404, message: "User Not Found" });
 		// verify password
     const auth = await services.compareHash(password, user.password);
-    console.log(auth);
     if (!auth) throw ({ code: 403, message: "Wrong Password" });
 		res.status(200).send({ status: "ok", token: services.createToken(user) });
 	} catch(err) {
