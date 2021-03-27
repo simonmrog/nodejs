@@ -17,4 +17,19 @@ describe("testing promises", function() {
     return expect(Promise.reject(new Error("error")))
       .rejects.toThrowError("error");
   });
+
+  test("fetch data async await", async done => {
+    const url = "https://rickandmortyapi.com/api/character/";
+    const { data } = await fetchData(url);
+    expect(data).not.toBeNull();
+    expect(data.results.length).toBeGreaterThan(0);
+    done();
+  });
+
+  test("test error in request", async done => {
+    const apiError = "http://httpstat.us/404";
+    const res = fetchData(apiError);
+    expect(res).rejects.toEqual(Error("Request failed with status 404"));
+    done();
+  });
 });
