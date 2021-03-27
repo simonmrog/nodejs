@@ -15,6 +15,6 @@ describe("testing promises", function() {
 
   test("rejects with an error", () => {
     return expect(Promise.reject(new Error("error")))
-      .rejects.toThrow("error");
+      .rejects.toThrowError("error");
   });
 });
