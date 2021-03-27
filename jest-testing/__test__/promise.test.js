@@ -8,4 +8,13 @@ describe("testing promises", function() {
       done();
     });
   });
+
+  test("resolves with a 1", () => {
+    return expect(Promise.resolve(1)).resolves.toBe(1);
+  });
+
+  test("rejects with an error", () => {
+    return expect(Promise.reject(new Error("error")))
+      .rejects.toThrow("error");
+  });
 });
