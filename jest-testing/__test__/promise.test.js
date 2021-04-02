@@ -28,8 +28,8 @@ describe("testing promises", function() {
 
   test("test error in request", async done => {
     const apiError = "http://httpstat.us/404";
-    const res = await fetchData(apiError);
-    expect(res).rejects.toEqual(Error("Request failed with status code 404"));
+    const request = fetchData(apiError);
+    await expect(request).rejects.toEqual(Error("Request failed with status code 404"));
     done();
   });
 });
