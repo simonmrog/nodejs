@@ -20,10 +20,10 @@ class MongoDB {
   mongoUri = null;
 
   makeDatabaseConnection() {
-    const auth = config.mongoUsername !== "" ? `${this.mongoUsername}:${this.mongoPassword}@` : "";
+    const auth = this.mongoUsername !== "" ? `${this.mongoUsername}:${this.mongoPassword}@` : "";
     this.mongoUri = `mongodb://${auth}${this.mongoHost}:${this.mongoPort}/${this.mongoDatabase}`;
 
-    console.log(`Connecting to ${this.mongoUri}...`);
+    console.log(`[INFO] Connecting to ${this.mongoUri}...`);
 
     return mongoose.connect(this.mongoUri, {
       auth: { authSource: "admin" },

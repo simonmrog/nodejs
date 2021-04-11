@@ -1,7 +1,7 @@
 "use strict";
 
 import ErrorHandler from "./services/error.js";
-import app from "./api/app.js";
+import app from "./app.js";
 import mongo from "./db.js";
 import config from "./config.js";
 
