@@ -2,7 +2,6 @@
 
 class RootController {
   renderIndex (req, res) {
-    console.log("indexuser", req.user);
     res.render("index", {
       title: "Passport Social Login",
       user: req.user

@@ -27,7 +27,7 @@ app.use(express.json());
 
 // Session config
 app.use(cookieParser());
-app.use(session({ secret: 'SECRET' }));
+app.use(session({ secret: "SECRET", resave: true, saveUninitialized: true }));
 app.use(PassportService.initialize());
 app.use(PassportService.session());
 

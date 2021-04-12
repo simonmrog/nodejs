@@ -9,6 +9,8 @@ class MongoDB {
   mongooseConfig = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
     serverSelectionTimeoutMS: 5000,
     socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
   };

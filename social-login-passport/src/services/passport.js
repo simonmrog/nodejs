@@ -31,6 +31,10 @@ class PassportService {
     return this.passport.session();
   }
 
+  authenticate(args) {
+    return this.passport.authenticate(...args);
+  }
+
   config() {
     this.passport.serializeUser(function (user, done) {
       done(null, user);

@@ -23,16 +23,16 @@ services:
     container_name: social-login-app
     command: npm run dev
     environment:
-      - ENVIRONMENT=dev
-      - MONGO_USERNAME=username
-      - MONGO_PASSWORD=password
-      - MONGO_DATABASE_NAME=users
-      - MONGO_HOST=social-login-db
-      - MONGO_PORT=27017
-      - TWITTER_KEY=P077ZnUB6QSW0EwyAdbqZ4h8U
-      - TWITTER_SECRET=CfKECd3vHVu2sPYKmS3FAEZ2HnKqV4UQTXy5a1Fg0wNvH7ARXw
-      - FACEBOOK_CLIENT_ID=266417798491983
-      - FACEBOOK_SECRET=617d8ac408f44f31e8555fddc7270b38
+      - ENVIRONMENT
+      - MONGO_USERNAME
+      - MONGO_PASSWORD
+      - MONGO_DATABASE_NAME
+      - MONGO_HOST
+      - MONGO_PORT
+      - TWITTER_KEY
+      - TWITTER_SECRET
+      - FACEBOOK_CLIENT_ID
+      - FACEBOOK_SECRET
     volumes:
       - ./:/usr/src/app
       - /usr/src/app/node_modules

@@ -1,20 +1,23 @@
 "use strict";
 
-import passport from "passport";
+import PassportService from "passport";
 
 
 class SocialAuthController {
   authenticate(provider, redirect = false) {
-    if (redirect) return passport.authenticate(provider, {
+    if (redirect) return PassportService.authenticate(provider, {
       successRedirect: "/", failureRedirect: "/login"
     });
 
-    return passport.authenticate(provider);
+    return PassportService.authenticate(provider);
   }
 
-  logout (req, res) {
+  logout(req, res) {
     req.logout();
-    res.redirect(301, "/");
+    req.session.destroy((err) => {
+      delete req.session;
+    });
+    res.redirect("/");
   }
 }
 
