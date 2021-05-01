@@ -27,8 +27,9 @@ init();
 process.stdin.on("data", (data) => {
   const password = data.toString().trim();
   if (password !== "password") process.stdout.write("password: ");
-  else {
-    process.stdout.write(`Successfully logged in\n\n`);
-    process.exit();
-  }
+  else process.exit();
+});
+
+process.on("exit", () => {
+  process.stdout.write(`Successfully logged in\n`);
 });
