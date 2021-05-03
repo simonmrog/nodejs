@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="main.css" />
+  <title>Form Nodemailer</title>
+</head>
+<body>
+  <h1>Nodemailer</h1>
+  <div class="container ">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-body">
+            <form action="/send-email" method="POST">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  placeholder="Name"
+                  autofocus
+                >
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Email"
+                 >
+              </div>
+              <button
+                class="btn btn-primary btn-block"
+                onclick="setMessage()"
+              >Submit</button>
+            </form>
+            <div class="mt-2" id="email-confirm-message"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function setMessage() {
+      document.getElementById("email-confirm-message").innerHTML
+        = "An email was sent to you.Please confirm your account";
+    }
+  </script>
+</body>
+</html>
