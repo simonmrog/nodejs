@@ -1,0 +1,19 @@
+{
+  "name": "aws-sqs-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.94.0",
+    "dotenv": "^16.0.1",
+    "winston": "^3.7.2"
+  }
+}
