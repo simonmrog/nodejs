@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-sns": "^3.95.0",
     "@aws-sdk/client-sqs": "^3.94.0",
     "dotenv": "^16.0.1",
     "winston": "^3.7.2"

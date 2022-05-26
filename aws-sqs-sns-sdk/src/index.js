@@ -1,11 +1,13 @@
 import config from "./config.js";
 import sqsService from "./services/sqs.js";
+import snsService from "./services/sns.js";
 
 import log from "./logger.js";
 
 async function start() {
   try {
     let queueName = null;
+    let topicName = null;
     const argv = process.argv;
     if (argv.length <= 2) throw new Error("Invalid operation parameters");
     const args = argv.slice(2);
@@ -47,6 +49,24 @@ async function start() {
         queueName = args[1] || config.DEFAULT_QUEUE_NAME;
         const messagePolled = await sqsService.pollMessage(queueName);
         log.info(`Message polled: ${messagePolled.Body}`);
+        break;
+      case "create-topic":
+        log.info("Creating topic...");
+        if (argv.length <= 2) throw new Error("Invalid operation parameters");
+        topicName = args[1] || config.DEFAULT_TOPIC_NAME;
+        console.log(topicName);
+        await snsService.createTopic(topicName);
+        log.info("Topic Created Successfully");
+        break;
+      case "subscribe-to-topic":
+        break;
+      case "publish-message":
+        if (argv.length <= 4) throw new Error("Invalid operation parameters");
+        topicName = args[1] || config.DEFAULT_TOPIC_NAME;
+        const messageSubject = args[3];
+        const messageToPublish = args[4];
+        await publishMessage(messageSubject, messageToPublish);
+        log.info("Message Published Successfully");
         break;
       default:
         throw new Error("Invalid Operation");

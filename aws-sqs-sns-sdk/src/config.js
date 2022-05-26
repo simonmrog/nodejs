@@ -5,4 +5,5 @@ export default {
   AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
   AWS_REGION: process.env.AWS_REGION,
   DEFAULT_QUEUE_NAME: process.env.DEFAULT_QUEUE_NAME,
+  DEFAULT_TOPIC_NAME: process.env.DEFAULT_TOPIC_NAME,
 };
