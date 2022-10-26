@@ -1,6 +1,9 @@
+const weatherAPI = require("./weatherAPI");
 const { messageWeather } = require("./showWeather");
 
-jest.mock("./weatherAPI");
+jest.mock("./weatherAPI", () => ({
+  getWeather: jest.fn((format) => 20),
+}));
 
 test("Should return weather message with celsius temperature with jest.mock", () => {
   const result = messageWeather();
