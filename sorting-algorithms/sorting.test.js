@@ -16,12 +16,7 @@ describe("Sorting algorithms must sort a list of numbers", () => {
       Math.floor(Math.random() * 40)
     );
 
-    console.log("list", list);
-
-    // const list = [8, 2, 4, 5, 8, 9];
-
     const sortedList = insertionSort(list);
-    console.log("sorted", sortedList);
     list.sort((a, b) => a - b);
     expect(sortedList).toEqual(list);
   });
