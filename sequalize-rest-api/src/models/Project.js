@@ -1,9 +1,9 @@
 import { DataTypes } from "sequelize";
 
 import sequelize from "../database/database.js";
-import { TaskSchema } from "./Task.js";
+import { TaskModel } from "./Task.js";
 
-export const ProjectSchema = sequelize.define("projects", {
+export const ProjectModel = sequelize.define("projects", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -20,12 +20,12 @@ export const ProjectSchema = sequelize.define("projects", {
   }
 });
 
-ProjectSchema.hasMany(TaskSchema, {
+ProjectModel.hasMany(TaskModel, {
   foreignKey: "projectId",
   sourceKey: "id",
 });
 
-TaskSchema.belongsTo(ProjectSchema, {
+TaskModel.belongsTo(ProjectModel, {
   foreignKey: "projectId",
   targetId: "id",
 });
