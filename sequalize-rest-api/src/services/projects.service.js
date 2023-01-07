@@ -4,6 +4,10 @@ export const getProjects = async () => {
   return await ProjectModel.findAll();
 }
 
+export const getProjectById = async (id) => {
+  return await ProjectModel.findOne({ where: { id } });
+}
+
 export const createProject = async (name, priority, description) => {
   return await ProjectModel.create({
     name,
@@ -35,4 +39,5 @@ export default {
   createProject,
   updateProject,
   deleteProject,
+  getProjectById,
 }
