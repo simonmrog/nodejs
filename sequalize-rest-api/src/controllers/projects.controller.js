@@ -66,8 +66,11 @@ export const deleteProject = async (req, res, next) => {
 export const getProjectTasks = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const projects = await tasksService.getTasksByProject(id);
-    return res.json(projects);
+    const project = await projectsService.getProjectById(id);
+    if (!project)
+      return res.status(404).json({ message: "Project not found"})
+    const tasks = await tasksService.getTasksByProject(id);
+    return res.json(tasks);
   } catch(err) {
     next(err);
   }
