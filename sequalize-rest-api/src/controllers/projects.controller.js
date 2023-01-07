@@ -1,4 +1,5 @@
 import projectsService from "../services/projects.service.js";
+import tasksService from "../services/tasks.service.js";
 
 export const getProjects = async (req, res, next) => {
   try {
@@ -57,6 +58,16 @@ export const deleteProject = async (req, res, next) => {
     if (!deleted)
       return res.status(404).json({ message: "Project not found" });
     return res.sendStatus(204);
+  } catch(err) {
+    next(err);
+  }
+}
+
+export const getProjectTasks = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const projects = await tasksService.getTasksByProject(id);
+    return res.json(projects);
   } catch(err) {
     next(err);
   }

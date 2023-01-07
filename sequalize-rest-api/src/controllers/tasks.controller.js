@@ -37,9 +37,9 @@ export const createTask = async (req, res, next) => {
 export const updateTask = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { name, done } = req.body;
+    const { name, done, projectId } = req.body;
     const updated = await tasksService.updateTask(
-      id, name, done
+      id, name, done, projectId
     );
     return res.status(404).json({
       message: `${updated} record(s) where updated`

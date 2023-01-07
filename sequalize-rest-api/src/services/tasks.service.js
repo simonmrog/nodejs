@@ -15,10 +15,11 @@ export const createTask = async (name, projectId) => {
   });
 }
 
-export const updateTask = async (id, name, done) => {
+export const updateTask = async (id, name, done, projectId) => {
   return await TaskModel.update({
     name,
-    done
+    done,
+    projectId
   },{
     where: {
       id
@@ -32,10 +33,17 @@ export const deleteTask = async (id) => {
   });
 }
 
+export const getTasksByProject = async (projectId) => {
+  return await TaskModel.findAll({
+    where: { projectId }
+  });
+}
+
 export default {
   getTasks,
   createTask,
   updateTask,
   deleteTask,
   getTaskById,
+  getTasksByProject,
 }
