@@ -11,6 +11,11 @@ app.use(bodyParser.json({ strict: false }));
 app.use(cors());
 app.use("/api/flights", flightRouter);
 
+// Default route
+app.get("*", function (req, res) {
+  throw new Error("Route Not Found");
+});
+
 // Error middleware
 app.use(errorHandler);
 
