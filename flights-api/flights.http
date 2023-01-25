@@ -1,0 +1,32 @@
+@api_url = http://localhost:4000
+
+### Get all flights
+GET {{api_url}}/api/flights
+
+### Get flight by ID
+GET {{api_url}}/api/flights/63d09bf56032edeb5f983fc4
+
+### Create flights
+POST {{api_url}}/api/flights
+Content-Type: application/json
+
+{
+  "cityFrom": "Madrid",
+  "cityTo": "Paris",
+  "price": 1100,
+  "availableSeats": 50,
+  "date": "2023-02-10T15:00:15.339Z"
+}
+
+### Update Flight
+PATCH {{api_url}}/api/flights/63d13f26e8be88b991d77917
+Content-Type: application/json
+
+{
+  "cityFrom": "Monterrey",
+  "cityTo": "Toronto",
+  "date": "2023-01-16T08:00:15.339+00:00"
+}
+
+### Delete Flight
+DELETE {{api_url}}/api/flights/63d13f41e8be88b991d7791b
