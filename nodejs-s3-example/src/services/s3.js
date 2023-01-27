@@ -2,7 +2,9 @@ import {
   S3Client,
   PutObjectCommand,
   ListObjectsCommand,
+  GetObjectCommand,
 } from "@aws-sdk/client-s3";
+import fs from "fs";
 
 import config from "../config.js";
 
@@ -32,4 +34,21 @@ export const getFiles = async () => {
     Bucket: config.AWS_BUCKET_NAME,
   });
   return await client.send(command);
+};
+
+export const getFileByName = async (filename) => {
+  const command = new GetObjectCommand({
+    Bucket: config.AWS_BUCKET_NAME,
+    Key: filename,
+  });
+  return await client.send(command);
+};
+
+export const downloadFile = async (filename) => {
+  const command = new GetObjectCommand({
+    Bucket: config.AWS_BUCKET_NAME,
+    Key: filename,
+  });
+  const result = await client.send(command);
+  result.Body.pipe(fs.createWriteStream(`./public/${filename}`));
 };

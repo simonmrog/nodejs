@@ -25,4 +25,16 @@ app.post("/files", async (req, res) => {
     .json({ status: "ok", message: "File(s) uploaded successfully", result });
 });
 
+app.get("/files/:filename", async (req, res) => {
+  const { filename } = req.params;
+  const result = await s3Service.getFileByName(filename);
+  res.json({ status: "ok", result: result.$metadata });
+});
+
+app.get("/files/:filename/download", async (req, res) => {
+  const { filename } = req.params;
+  const result = await s3Service.downloadFile(filename);
+  res.json({ status: "ok", message: "File Downloaded Successfully" });
+});
+
 export default app;
