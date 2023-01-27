@@ -13,10 +13,16 @@ app.get("/", (req, res) => {
   res.json({ status: "ok", message: "Welcome to the API" });
 });
 
+app.get("/files", async (req, res) => {
+  const files = await s3Service.getFiles();
+  res.json({ status: "ok", files: files.Contents });
+});
+
 app.post("/files", async (req, res) => {
-  console.log(req.files);
-  await s3Service.uploadFile(req.files.file);
-  res.json({ status: "ok", message: "File(s) uploaded successfully" });
+  const result = await s3Service.uploadFile(req.files.file);
+  res
+    .status(201)
+    .json({ status: "ok", message: "File(s) uploaded successfully", result });
 });
 
 export default app;

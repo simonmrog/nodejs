@@ -1,4 +1,8 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  PutObjectCommand,
+  ListObjectsCommand,
+} from "@aws-sdk/client-s3";
 
 import config from "../config.js";
 
@@ -11,7 +15,7 @@ const client = new S3Client({
 });
 
 export const uploadFile = async (file) => {
-  console.log("file", file);
+  "file", file;
 
   const uploadParams = {
     Bucket: config.AWS_BUCKET_NAME,
@@ -19,9 +23,13 @@ export const uploadFile = async (file) => {
     Body: file.data,
   };
 
-  console.log(uploadParams);
-
   const command = new PutObjectCommand(uploadParams);
-  const result = await client.send(command);
-  console.log(result);
+  return await client.send(command);
+};
+
+export const getFiles = async () => {
+  const command = new ListObjectsCommand({
+    Bucket: config.AWS_BUCKET_NAME,
+  });
+  return await client.send(command);
 };
