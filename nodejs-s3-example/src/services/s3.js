@@ -1,10 +1,11 @@
+import fs from "fs";
 import {
   S3Client,
   PutObjectCommand,
   ListObjectsCommand,
   GetObjectCommand,
 } from "@aws-sdk/client-s3";
-import fs from "fs";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 import config from "../config.js";
 
@@ -51,4 +52,13 @@ export const downloadFile = async (filename) => {
   });
   const result = await client.send(command);
   result.Body.pipe(fs.createWriteStream(`./public/${filename}`));
+};
+
+export const getFileUrl = async (filename) => {
+  const command = new GetObjectCommand({
+    Bucket: config.AWS_BUCKET_NAME,
+    Key: filename,
+  });
+
+  return await getSignedUrl(client, command, { expiresIn: 3600 });
 };

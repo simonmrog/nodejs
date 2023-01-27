@@ -27,8 +27,8 @@ app.post("/files", async (req, res) => {
 
 app.get("/files/:filename", async (req, res) => {
   const { filename } = req.params;
-  const result = await s3Service.getFileByName(filename);
-  res.json({ status: "ok", result: result.$metadata });
+  const url = await s3Service.getFileUrl(filename);
+  res.json({ status: "ok", url });
 });
 
 app.get("/files/:filename/download", async (req, res) => {
