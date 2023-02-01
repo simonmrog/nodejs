@@ -1,0 +1,25 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "NodeJS Course",
+      "author": "John Doe",
+      "topic": "programming",
+      "url": "http://fakeurl.com"
+    },
+    {
+      "id": 2,
+      "title": "Sherlock Holmes",
+      "author": "Arthur Conan Doyle",
+      "topic": "literature",
+      "url": "http://fakesherlockurl.com"
+    },
+    {
+      "id": 3,
+      "title": "Harry Potter",
+      "author": "J. K. Rowling",
+      "topic": "literature",
+      "url": "http://fakeharrypotterurl.com"
+    }
+  ]
+}
