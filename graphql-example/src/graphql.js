@@ -29,8 +29,8 @@ const getBookById = (args) => {
   return books.find((book) => book.id == id);
 };
 
-const getBooks = () => {
-  const filteredBooks = books.filter((book) => book.id == id);
+const getBooks = (topic) => {
+  const filteredBooks = books.filter((book) => book.topic == topic);
   if (filteredBooks.length === 0) return books;
 };
 
