@@ -15,6 +15,10 @@ const schema = buildSchema(`
     books(topic: String): [Book]
   }
 
+  type Mutation {
+    updateBookTopic(id: Int!, topic: String!): Book
+  }
+
   type Book {
     id: Int
     title: String
@@ -34,9 +38,20 @@ const getBooks = (topic) => {
   if (filteredBooks.length === 0) return books;
 };
 
+const updateBookTopic = ({ id, topic }) => {
+  books.map((book) => {
+    if (book.id === id) {
+      book.topic = topic;
+      return book;
+    }
+  });
+  return books.find((book) => book.id === id);
+};
+
 const resolvers = {
   book: getBookById,
   books: getBooks,
+  updateBookTopic,
 };
 
 const gqlMiddleware = graphqlHTTP({
