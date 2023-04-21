@@ -1,0 +1,38 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@types/wkhtmltopdf': ^0.3.4
+  wkhtmltopdf: ^0.4.0
+
+dependencies:
+  '@types/wkhtmltopdf': 0.3.4
+  wkhtmltopdf: 0.4.0
+
+packages:
+
+  /@types/node/18.15.12:
+    resolution: {integrity: sha512-Wha1UwsB3CYdqUm2PPzh/1gujGCNtWVUYF0mB00fJFoR4gTyWTDPjSm+zBF787Ahw8vSGgBja90MkgFwvB86Dg==}
+    dev: false
+
+  /@types/wkhtmltopdf/0.3.4:
+    resolution: {integrity: sha512-W+HCS7HBkrqfH1Jxj+nz7YkKTQ3Pkee31qKC5WU1VhTebgXTTbAxHVQivv7hm5SixXP/jAkQ9BONgJFxkEYtqA==}
+    dependencies:
+      '@types/node': 18.15.12
+    dev: false
+
+  /is-stream/1.1.0:
+    resolution: {integrity: sha512-uQPm8kcs47jx38atAcWTVxyltQYoPT68y9aWYdV6yWXSyW8mzSat0TL6CiWdZeCdF3KrAvpVtnHbTv4RN+rqdQ==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
+  /slang/0.3.0:
+    resolution: {integrity: sha512-kGj3TvxSDR1Enhig/aan5ucfWNDULTiWg3NrExUzO2ShXcYsm6k2oPxnav8GtslYvozxRAqL+E2O3P3QKtQYSg==}
+    dev: false
+
+  /wkhtmltopdf/0.4.0:
+    resolution: {integrity: sha512-PXvsPehsmP1HeUDPx5qofitc+TJ0+Gb4Xn11iPJnHrLgXwyzRUzn9/b2t+soE+fwBMqUPs4Wchd0CRW+52MkNQ==}
+    engines: {node: '>=0.6'}
+    dependencies:
+      is-stream: 1.1.0
+      slang: 0.3.0
+    dev: false
